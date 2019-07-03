@@ -23,10 +23,25 @@ object MovieRatingsHistogram {
 
     val ratings: RDD[String] = line.map(_.toString).map(_.split("\t")(2))
     val count: collection.Map[String, Long] = ratings.countByValue()
+
     /*
     Print each value of the Map
      */
     println(count.toSeq.sortBy(_._1))
+
+    /*
+    Convert rdd to a an rdd of tuple
+     */
+    val newRatings: RDD[(String, Int)] = ratings.map((_,1))
+
+    newRatings.collect().sorted.foreach(println)
+    val x: RDD[(String, Int)] = newRatings.reduceByKey(_+_)
+    /*
+    Use mapvalues when you don't want to use the key of rdd
+     */
+    val y: RDD[(String, (Int, Int))] = newRatings.mapValues((_,1))
+
+
 
   }
 
