@@ -15,7 +15,7 @@ object FriendsByAge extends SparkUtils {
         val x: Array[String] = row.split(",")
         (x(1),x(2),x(3))
       })
-      newrdd.
+      newrdd.take(1)
 
     }
 
