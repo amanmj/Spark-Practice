@@ -6,7 +6,7 @@ object CustomerSpending extends Serializable with SparkUtils {
   def main(args: Array[String]): Unit = {
     val logger = getLogger(this.getClass.getName)
     val sc = getSparkContext()
-    val lines: RDD[String] = sc.textFile("/Users/ammahajan/Personal/Spark-Practice/src/main/resources/customer-orders.csv")
+    val lines: RDD[String] = sc.textFile("/Users/amanmahajan/github/Spark-Practice/src/main/resources/customer-orders.csv")
     val rdd: RDD[Array[String]] = lines.map(row => row.split(","))
     val modifiedRdd: RDD[(String, Float)] = rdd.map(arr => (arr(0).toString,arr(2).toFloat))
     val sumRdd: RDD[(String, Float)] = modifiedRdd.reduceByKey(_+_)

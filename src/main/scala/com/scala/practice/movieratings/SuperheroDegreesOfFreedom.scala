@@ -7,7 +7,7 @@ import org.apache.spark.rdd.RDD
 import scala.collection.mutable.ArrayBuffer
 
 object SuperheroDegreesOfFreedom extends SparkUtils {
-  val logger: Logger = getLogger()
+  val logger: Logger = getLogger(this.getClass.getName)
   val sc: SparkContext = getSparkContext()
   val graphrdd: RDD[String] = sc.textFile("/Users/ammahajan/Personal/Spark-Practice/src/main/resources/Marvel-graph.txt")
   val superheroname: RDD[String] = sc.textFile("/Users/ammahajan/Personal/Spark-Practice/src/main/resources/Marvel-names.txt")
